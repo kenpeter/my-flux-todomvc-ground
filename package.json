@@ -1,0 +1,27 @@
+{
+  "name": "my-flux-todomvc-ground",
+  "version": "0.0.1",
+  "description": "my flux todomvc ground",    
+  "main": "js/app.js",
+  "dependencies": {
+    "classnames": "*",
+    "flux": "*",
+    "keymirror": "*",
+    "object-assign": "*",
+    "react": "*"
+  },
+  "scripts": {
+    "start": "watchify -o js/bundle.js -v -d js/app.js & python -m SimpleHTTPServer",
+    "//": "This is how we do comment.",
+    "build": "browserify . -t [envify --NODE_ENV production] | uglifyjs -cm > js/bundle.min.js"
+  },
+  "browserify": {
+    "transform": [
+      "reactify",
+      "envify"
+    ]
+  },
+  "author": "Original from Bill Fisher. Modified by kenpeter"
+
+}
+
