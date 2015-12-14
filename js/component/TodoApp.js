@@ -13,7 +13,7 @@ var TodoApp = React.createClass({
   getInitialState: function() {
     console.log("get init state");    
 
-    return {};
+    return getTodoState();
   },
 
   componentWillMount: function() {
@@ -25,7 +25,10 @@ var TodoApp = React.createClass({
     return (
       <div>
         <Header />
-        <MainSection />
+        <MainSection 
+          allTodos={this.state.allTodos}
+          areAllComplete={this.state.areAllComplete}
+        />
         <Footer /> 
       </div>  
     );
@@ -43,5 +46,12 @@ var TodoApp = React.createClass({
 
 });
 
+
+function getTodoState() {
+  return {
+    allTodos: TodoStore.getAll(),
+    areAllComplete: TodoStore.areAllComplete()
+  };
+}
 
 module.exports = TodoApp;
