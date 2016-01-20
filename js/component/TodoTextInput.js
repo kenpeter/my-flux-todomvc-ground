@@ -5,9 +5,11 @@ var ENTER_KEY_CODE = 13;
 
 var TodoTextInput = React.createClass({
   propTypes: {
+    className: ReactPropTypes.string,
     id: ReactPropTypes.string,
     placeholder: ReactPropTypes.string,
-    onSave: ReactPropTypes.func.isRequired // Call back func
+    onSave: ReactPropTypes.func.isRequired, // Call back func
+    value: ReactPropTypes.string
   },
 
   getInitialState: function() {
@@ -34,6 +36,7 @@ var TodoTextInput = React.createClass({
   render: function() {
     return (
       <input
+        className = {this.props.className}
         id = {this.props.id}
         placeholder = {this.props.placeholder}
         value = {this.state.value} 
