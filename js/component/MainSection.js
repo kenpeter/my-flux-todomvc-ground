@@ -15,7 +15,7 @@ var MainSection = React.createClass({
       return null;
     }
 
-    var local_todos = ['bla']; 
+    var local_todos = []; 
     var todos = this.props.todos;
    
     for(var key in todos) { 
@@ -30,7 +30,7 @@ var MainSection = React.createClass({
           <input 
             type="checkbox" 
             id="toggle-all"
-            onChnage={this.on_toggle_complete_all} // component fires action
+            onChange={this.on_toggle_complete_all} // component fires action
             checked={this.props.all_completed ? 'checked' : ''}
           />
         </p>

@@ -1,7 +1,8 @@
 var React = require('react');
 var TodoTextInput = require("./TodoTextInput.js");
 // // Does it means parent should always have the action, while child shouldn't
-var TodoActon = require("../action/TodoAction.js");
+var TodoAction = require("../action/TodoAction.js");
+
 
 var Header = React.createClass({
 
@@ -20,6 +21,7 @@ var Header = React.createClass({
   },
 
   // So it passes this to its children, so all children can use it.
+  // Another callback function, so someone uses it and pass text to it.
   _save_an_todo_item: function(text) {
     if(text.trim()) {
       TodoAction.create(text);

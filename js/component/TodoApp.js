@@ -7,6 +7,15 @@ var Footer = require("./Footer.js");
 var TodoStore = require("../store/TodoStore.js");
 
 
+// Outside of TodoApp
+function getTodoState() {
+  return {
+    todos: TodoStore.getAll(),
+    areAllComplete: TodoStore.areAllComplete()
+  };
+}
+
+
 // Main app
 var TodoApp = React.createClass({
   // It will only invoke once and before everything.
@@ -29,29 +38,29 @@ var TodoApp = React.createClass({
           todos={this.state.todos}
           all_completed={this.state.areAllComplete}
         />
-        <Footer /> 
+        <Footer all_todos={this.state.todos}/> 
       </div>  
     );
     
   },
 
   componentDidMount: function() {
-    console.log("com did mount");
+    TodoStore.addChangeListener(this._onChange);
   },
 
   componentWillUnmount: function() {
-    console.log("will unmount");
-  }
+    TodoStore.removeChangeListener(this._onChange);
+  },
 
+  // Pass this method, so TodoStore can set state.
+  _onChange: function() {
+    this.setState(getTodoState());
+  }
 
 });
 
 
-function getTodoState() {
-  return {
-    todos: TodoStore.getAll(),
-    areAllComplete: TodoStore.areAllComplete()
-  };
-}
+
+
 
 module.exports = TodoApp;
